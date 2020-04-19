@@ -61,7 +61,10 @@ class PeacefulBot:
             if "PING" in line:
                 self.s.send((line.replace("PING", "PONG")).encode('utf-8'))
                 print("PONG")
-                return (["Twitch", line])
+                return ({
+                    "user": "Twitch",
+                    "msg": line
+                })
             else:
                 return ({
                     "user": self.getUser(line),
