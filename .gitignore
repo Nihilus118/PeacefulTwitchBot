@@ -35,6 +35,7 @@ media
 .Python build/ 
 develop-eggs/ 
 dist/ 
+build/ 
 downloads/ 
 eggs/ 
 .eggs/ 
