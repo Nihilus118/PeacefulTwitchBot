@@ -64,5 +64,5 @@ class PeacefulBot:
 
             return ({
                 "user": self.getUser(line),
-                "message": self.getMessage(line)
+                "msg": self.getMessage(line)
             })
