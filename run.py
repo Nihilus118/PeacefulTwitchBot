@@ -64,19 +64,22 @@ while True:
             bot.sendMessage("This is a not a darkside run!")
 
     if "!info" in line["msg"]:
+        msg = ""
         if noreset:
-            bot.sendMessage("This is a noreset run!")
+            msg += "This is a noreset run! "
         else:
-            bot.sendMessage("This is not a noreset run!")
+            msg += "This is not a noreset run! "
         if xdskip:
-            bot.sendMessage("This is a xdskip run!")
+            msg += "This is a xdskip run! "
         else:
-            bot.sendMessage("This is not a xdskip run!")
+            msg += "This is not a xdskip run! "
         if apgf:
-            bot.sendMessage("This is an apgf run!")
+            msg += "This is an apgf run! "
         else:
-            bot.sendMessage("This is not an apgf run!")
+            msg += "This is not an apgf run! "
         if darkside:
-            bot.sendMessage("This is a darkside run!")
+            msg += "This is a darkside run!"
         else:
-            bot.sendMessage("This is not a darkside run!")
+            msg += "This is not a darkside run!"
+
+        bot.sendMessage(msg)
