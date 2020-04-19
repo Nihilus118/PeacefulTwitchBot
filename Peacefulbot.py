@@ -9,6 +9,9 @@ class PeacefulBot:
         self.NICK = NICK
         self.CHANNEL = CHANNEL
 
+        self.openSocket()
+        self.joinRoom()
+
     def openSocket(self):
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
@@ -42,3 +45,20 @@ class PeacefulBot:
         messageTemp = f"PRIVMSG #" + self.CHANNEL + " :" + message
         self.s.send((messageTemp + "\r\n").encode('utf-8'))
         print("Sent: " + messageTemp)
+
+    def getUser(self, line):
+        return (line.split(":", 2)[1].split("!", 1)[0])
+
+    def getMessage(self, line):
+        return (line.split(":", 2)[2])
+
+    def listenToChat(self):
+        readbuffer = self.s.recv(2048).decode('utf-8')
+        temp = readbuffer.split("\n")
+        # readbuffer = temp.pop()
+
+        for line in temp:
+            return ({
+                "user": self.getUser(line),
+                "message": self.getMessage(line)
+            })
