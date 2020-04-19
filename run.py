@@ -1,14 +1,22 @@
 from Peacefulbot import PeacefulBot
-from Settings import HOST, PORT, PASS, NICK, CHANNEL
+import json
+
+# Get Settings from settings.json
+with open('settings.json', 'r') as f:
+    settings = f.read()
+
+settings = json.loads(settings)
 
 # Connect to Twitch
-bot = PeacefulBot(HOST, PORT, PASS, NICK, CHANNEL)
+bot = PeacefulBot(
+    settings["host"],
+    settings["port"],
+    settings["pass"],
+    settings["nick"],
+    settings["channel"]
+)
 
-modList = [
-    "peacefulstorm13",
-    "nihilusstream",
-    "mrpanda2k"
-]
+modList = settings["mods"]
 
 noreset = False
 xdskip = False
@@ -24,6 +32,8 @@ while True:
         xdskip = False
         apgf = False
         darkside = False
+
+        bot.sendMessage("All values are now resetted.")
 
     if "!noreset" in line["msg"] and line["user"] in modList:
         noreset = not noreset
