@@ -9,10 +9,6 @@ class PeacefulBot:
         self.NICK = NICK
         self.CHANNEL = CHANNEL
 
-        self.openSocket()
-        self.joinRoom()
-
-    def openSocket(self):
         self.s = socket.socket()
         self.s.connect((self.HOST, self.PORT))
 
@@ -20,7 +16,6 @@ class PeacefulBot:
         self.s.send((f"NICK " + self.NICK + "\r\n").encode('utf-8'))
         self.s.send((f"JOIN #" + self.CHANNEL + "\r\n").encode('utf-8'))
 
-    def joinRoom(self):
         readbuffer = ""
         loading = True
 
@@ -31,15 +26,12 @@ class PeacefulBot:
 
             for line in temp:
                 print(line)
-                loading = self.loadingComplete(line)
+                if ("End of /NAMES list" in line):
+                    loading = False
+                else:
+                    loading = True
 
         self.sendMessage("PeacefulBot is connected!")
-
-    def loadingComplete(self, line):
-        if ("End of /NAMES list" in line):
-            return False
-        else:
-            return True
 
     def sendMessage(self, message):
         messageTemp = f"PRIVMSG #" + self.CHANNEL + " :" + message
