@@ -55,9 +55,13 @@ class PeacefulBot:
     def listenToChat(self):
         readbuffer = self.s.recv(2048).decode('utf-8')
         temp = readbuffer.split("\n")
-        # readbuffer = temp.pop()
 
         for line in temp:
+            # Ping back to keep connection
+            if "PING" in line:
+                self.s.send((line.replace("PING", "PONG")).encode('utf-8'))
+                print("PONG")
+
             return ({
                 "user": self.getUser(line),
                 "message": self.getMessage(line)
