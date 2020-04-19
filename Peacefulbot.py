@@ -3,18 +3,14 @@ import socket
 
 class PeacefulBot:
     def __init__(self, HOST, PORT, PASS, NICK, CHANNEL):
-        self.HOST = HOST
-        self.PORT = PORT
-        self.PASS = PASS
-        self.NICK = NICK
         self.CHANNEL = CHANNEL
 
         self.s = socket.socket()
-        self.s.connect((self.HOST, self.PORT))
+        self.s.connect((HOST, PORT))
 
-        self.s.send((f"PASS " + self.PASS + "\r\n").encode('utf-8'))
-        self.s.send((f"NICK " + self.NICK + "\r\n").encode('utf-8'))
-        self.s.send((f"JOIN #" + self.CHANNEL + "\r\n").encode('utf-8'))
+        self.s.send((f"PASS " + PASS + "\r\n").encode('utf-8'))
+        self.s.send((f"NICK " + NICK + "\r\n").encode('utf-8'))
+        self.s.send((f"JOIN #" + CHANNEL + "\r\n").encode('utf-8'))
 
         readbuffer = ""
         loading = True
