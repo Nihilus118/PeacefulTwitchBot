@@ -20,8 +20,10 @@ modList = settings["mods"]
 
 noreset = False
 xdskip = False
+shirtless = False
 apgf = False
 darkside = False
+
 
 while True:
     line = bot.listenToChat()
@@ -30,6 +32,7 @@ while True:
     if "!resetAll" in line["msg"] and line["user"] in modList:
         noreset = False
         xdskip = False
+        shirtless = False
         apgf = False
         darkside = False
 
@@ -48,6 +51,13 @@ while True:
             bot.sendMessage("This is now a xdskip run!")
         else:
             bot.sendMessage("This is a not a xdskip run!")
+
+    if "!shirtless" in line["msg"] and line["user"] in modList:
+        shirtless = not shirtless
+        if shirtless:
+            bot.sendMessage("This is now a shirtless run!")
+        else:
+            bot.sendMessage("This is a not a shirtless run!")
 
     if "!apgf" in line["msg"] and line["user"] in modList:
         apgf = not apgf
