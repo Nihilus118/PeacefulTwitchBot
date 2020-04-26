@@ -47,10 +47,11 @@ class PeacefulBot:
         for line in temp:
             # Ping back to keep connection
             if "PING" in line:
-                # self.s.send(
-                #     bytes(line.replace("PING", "PONG")).encode("utf-8"))
-                self.sendMessage(line.replace("PING", "PONG"))
-                print("PONG")
+                # send msg to the server, not to chat. This is different from sendMessage custom definition
+                self.s.send(
+                    bytes((line.replace("PING", "PONG")+"\n").encode('utf-8'))
+                )
+                print("I just sent a PONG")
                 return ({
                     "user": "Twitch",
                     "msg": line
