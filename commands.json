@@ -1,0 +1,37 @@
+{
+    "!hi": {
+        "type": "message",
+        "permission": "everyone",
+        "message": "Hi @{user}"
+    },
+    "!noreset": {
+        "type": "toggle",
+        "permission": "mods",
+        "true_message": "This is now a noreset run! @{user}",
+        "false_message": "This is not a noreset run anymore! @{user}"
+    },
+    "!xdskip": {
+        "type": "toggle",
+        "permission": "mods",
+        "true_message": "This is now a xdSkip run! @{user}",
+        "false_message": "This is not a xdSkip run anymore! @{user}"
+    },
+    "!shirtless": {
+        "type": "toggle",
+        "permission": "mods",
+        "true_message": "This is now a shirtless run! @{user}",
+        "false_message": "This is not a shirtless run anymore! @{user}"
+    },
+    "!apgf": {
+        "type": "toggle",
+        "permission": "mods",
+        "true_message": "This is now an apgf run! @{user}",
+        "false_message": "This is not an apgf run anymore! @{user}"
+    },
+    "!darkside": {
+        "type": "toggle",
+        "permission": "mods",
+        "true_message": "This is now a darkside run! @{user}",
+        "false_message": "This is not a darkside run anymore! @{user}"
+    }
+}

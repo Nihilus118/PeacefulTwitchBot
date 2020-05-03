@@ -1,16 +1,38 @@
 import socket
+import json
 
 
 class PeacefulBot:
-    def __init__(self, HOST, PORT, PASS, NICK, CHANNEL):
-        self.CHANNEL = CHANNEL
+    def __init__(self):
+
+        # Load all commands on startup
+        with open('commands.json', 'r') as f:
+            commands = f.read()
+
+        self.commands = json.loads(commands)
+
+        self.commands_dict = {}
+
+        for (k, v) in self.commands.items():
+            # Create bools for toggle-commands
+            if v["type"] == "toggle":
+                self.commands_dict.update({k: False})
+
+        # Get Settings from settings.json
+        with open('settings.json', 'r') as f:
+            settings = f.read()
+
+        settings = json.loads(settings)
+
+        self.CHANNEL = settings["channel"]
+        self.MODLIST = settings["mods"]
 
         self.s = socket.socket()
-        self.s.connect((HOST, PORT))
+        self.s.connect((settings["host"], settings["port"]))
 
-        self.s.send((f"PASS " + PASS + "\r\n").encode('utf-8'))
-        self.s.send((f"NICK " + NICK + "\r\n").encode('utf-8'))
-        self.s.send((f"JOIN #" + CHANNEL + "\r\n").encode('utf-8'))
+        self.s.send((f"PASS " + settings["pass"] + "\r\n").encode('utf-8'))
+        self.s.send((f"NICK " + settings["nick"] + "\r\n").encode('utf-8'))
+        self.s.send((f"JOIN #" + settings["channel"] + "\r\n").encode('utf-8'))
 
         readbuffer = ""
         loading = True
@@ -27,6 +49,7 @@ class PeacefulBot:
                 else:
                     loading = True
 
+        # Confirming connection
         self.sendMessage("PeacefulBot is connected!")
 
     def sendMessage(self, message):
@@ -61,3 +84,39 @@ class PeacefulBot:
                     "user": self.getUser(line),
                     "msg": self.getMessage(line)
                 })
+
+    def run(self):
+        # Mainloop for the bot
+        while True:
+            line = self.listenToChat()
+            print(line)
+
+            # Check for commands from commands.json
+            for (k, v) in self.commands.items():
+                if k in line["msg"]:
+                    if (v["permission"] == "mods" and line["user"] in self.MODLIST) or v["permission"] == "everyone":
+                        if v["type"] == "toggle":
+                            self.commands_dict[k] = not self.commands_dict[k]
+                            if self.commands[k]:
+                                self.sendMessage(
+                                    v["true_message"].format(**line)
+                                )
+                            else:
+                                self.sendMessage(
+                                    v["false_message"].format(**line)
+                                )
+                        elif v["type"] == "message":
+                            self.sendMessage(
+                                v["message"].format(**line)
+                            )
+                        else:
+                            print("Unknown command type " + v["type"] + "!")
+
+            # Check for info command
+            if "!info" in line["msg"]:
+                for value in self.commands_dict:
+                    self.sendMessage(
+                        value.replace("!", "") + ": " +
+                        str(self.commands_dict[value]).replace(
+                            "True", "Yes").replace("False", "No")
+                    )
