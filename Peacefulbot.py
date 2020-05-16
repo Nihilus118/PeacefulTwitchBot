@@ -118,3 +118,9 @@ class PeacefulBot:
                         str(self.commands_dict[value]).replace(
                             "True", "Yes").replace("False", "No")
                     )
+
+            # Set all toggles to false
+            if "!resetAll" in line["msg"]:
+                for i in self.commands_dict:
+                    self.commands_dict[i] = False
+                self.sendMessage("All commands are reset!")
