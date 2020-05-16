@@ -95,7 +95,7 @@ class PeacefulBot:
                     if (v["permission"] == "mods" and line["user"] in self.MODLIST) or v["permission"] == "everyone":
                         if v["type"] == "toggle":
                             self.commands_dict[k] = not self.commands_dict[k]
-                            if self.commands[k]:
+                            if self.commands_dict[k]:
                                 self.sendMessage(
                                     v["true_message"].format(**line)
                                 )
