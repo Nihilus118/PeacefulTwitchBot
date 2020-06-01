@@ -44,7 +44,7 @@ class PeacefulBot:
 
             for line in temp:
                 print(line)
-                if ("End of /NAMES list" in line):
+                if "End of /NAMES list" in line:
                     loading = False
                 else:
                     loading = True
@@ -57,11 +57,13 @@ class PeacefulBot:
         self.s.send((messageTemp + "\r\n").encode('utf-8'))
         print("Sent: " + messageTemp)
 
-    def getUser(self, line):
-        return (line.split(":", 2)[1].split("!", 1)[0])
+    @staticmethod
+    def getUser(line):
+        return line.split(":", 2)[1].split("!", 1)[0]
 
-    def getMessage(self, line):
-        return (line.split(":", 2)[2])
+    @staticmethod
+    def getMessage(line):
+        return line.split(":", 2)[2]
 
     def listenToChat(self):
         readbuffer = self.s.recv(2048).decode('utf-8')
