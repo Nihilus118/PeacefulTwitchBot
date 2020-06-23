@@ -4,34 +4,20 @@
         "permission": "everyone",
         "message": "Hi @{user}"
     },
-    "!noreset": {
+    "!behindert": {
         "type": "toggle",
         "permission": "mods",
-        "true_message": "This is now a noreset run! @{user}",
-        "false_message": "This is not a noreset run anymore! @{user}"
+        "true_message": "ICH BIN BEHINDERT! @{user}",
+        "false_message": "ICH BIN NICHT BEHINDERT! @{user}"
     },
-    "!xdskip": {
-        "type": "toggle",
-        "permission": "mods",
-        "true_message": "This is now a xdSkip run! @{user}",
-        "false_message": "This is not a xdSkip run anymore! @{user}"
+    "!fddw": {
+        "type": "message",
+        "permission": "everyone",
+        "message": "Fick dich du Wichser @{user}!"
     },
-    "!shirtless": {
-        "type": "toggle",
-        "permission": "mods",
-        "true_message": "This is now a shirtless run! @{user}",
-        "false_message": "This is not a shirtless run anymore! @{user}"
-    },
-    "!apgf": {
-        "type": "toggle",
-        "permission": "mods",
-        "true_message": "This is now an apgf run! @{user}",
-        "false_message": "This is not an apgf run anymore! @{user}"
-    },
-    "!darkside": {
-        "type": "toggle",
-        "permission": "mods",
-        "true_message": "This is now a darkside run! @{user}",
-        "false_message": "This is not a darkside run anymore! @{user}"
+    "!test": {
+        "type": "count",
+        "permission": "everyone",
+        "message": "Anzahl liegt jetzt bei {count} @{user}!"
     }
 }

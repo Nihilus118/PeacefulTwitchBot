@@ -11,12 +11,17 @@ class PeacefulBot:
 
         self.commands = json.loads(commands)
 
+        # Create bools for toggle-commands
         self.commands_dict = {}
-
         for (k, v) in self.commands.items():
-            # Create bools for toggle-commands
             if v["type"] == "toggle":
                 self.commands_dict.update({k: False})
+
+        # Create int for count-commands
+        self.counts_dict = {}
+        for (k, v) in self.commands.items():
+            if v["type"] == "count":
+                self.counts_dict.update({k: 0})
 
         # Get Settings from settings.json
         with open('settings.json', 'r') as f:
@@ -50,7 +55,7 @@ class PeacefulBot:
                     loading = True
 
         # Confirming connection
-        self.sendMessage("PeacefulBot is connected!")
+        self.sendMessage("Bot is connected!")
 
     def sendMessage(self, message):
         messageTemp = f"PRIVMSG #" + self.CHANNEL + " :" + message
@@ -105,6 +110,13 @@ class PeacefulBot:
                                 self.sendMessage(
                                     v["false_message"].format(**line)
                                 )
+                        elif v["type"] == "count":
+                            self.counts_dict[k] += 1
+                            line["count"] = self.counts_dict[k]
+                            self.sendMessage(
+                                v["message"]
+                                .format(**line)
+                            )
                         elif v["type"] == "message":
                             self.sendMessage(
                                 v["message"].format(**line)
