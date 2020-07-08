@@ -15,9 +15,14 @@
         "permission": "everyone",
         "message": "Fick dich du Wichser @{user}!"
     },
-    "!test": {
+    "!fail": {
         "type": "count",
         "permission": "everyone",
-        "message": "Anzahl liegt jetzt bei {count} @{user}!"
+        "message": "Es gab schon {count} Fails im Stream @{user}!"
+    },
+    "!schwanz": {
+        "type": "count",
+        "permission": "everyone",
+        "message": "Der D der Viewer ist jetzt {count}cm Lang @{user}! Kreygasm"
     }
 }

@@ -7,13 +7,8 @@
     "!behindert": {
         "type": "toggle",
         "permission": "mods",
-        "true_message": "ICH BIN BEHINDERT! @{user}",
-        "false_message": "ICH BIN NICHT BEHINDERT! @{user}"
-    },
-    "!fddw": {
-        "type": "message",
-        "permission": "everyone",
-        "message": "Fick dich du Wichser @{user}!"
+        "true_message": "Light on @{user}",
+        "false_message": "Light off @{user}"
     },
     "!test": {
         "type": "count",

@@ -51,8 +51,6 @@ class PeacefulBot:
                 print(line)
                 if "End of /NAMES list" in line:
                     loading = False
-                else:
-                    loading = True
 
         # Confirming connection
         self.sendMessage("Bot is connected!")
@@ -138,3 +136,6 @@ class PeacefulBot:
                 for i in self.commands_dict:
                     self.commands_dict[i] = False
                 self.sendMessage("All commands are reset!")
+
+    def __del__(self):
+        self.sendMessage("Bot disconnected")
