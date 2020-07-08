@@ -7,22 +7,12 @@
     "!behindert": {
         "type": "toggle",
         "permission": "mods",
-        "true_message": "ICH BIN BEHINDERT! @{user}",
-        "false_message": "ICH BIN NICHT BEHINDERT! @{user}"
+        "true_message": "Light on @{user}",
+        "false_message": "Light off @{user}"
     },
-    "!fddw": {
-        "type": "message",
-        "permission": "everyone",
-        "message": "Fick dich du Wichser @{user}!"
-    },
-    "!fail": {
+    "!test": {
         "type": "count",
         "permission": "everyone",
-        "message": "Es gab schon {count} Fails im Stream @{user}!"
-    },
-    "!schwanz": {
-        "type": "count",
-        "permission": "everyone",
-        "message": "Der D der Viewer ist jetzt {count}cm Lang @{user}! Kreygasm"
+        "message": "Anzahl liegt jetzt bei {count} @{user}!"
     }
 }
